@@ -7,7 +7,7 @@ A Apple Push Notification Service bundle for Laravel
 ```php
 php artisan bundle:install simpleapns
 ```
-###Manualy
+###Manually
 ```php
 https://github.com/fabiorphp/laravel-simpleapns
 ```
@@ -28,11 +28,13 @@ Move the **config/simpleapns.php** to the application folder and add the followi
 return array(
 	'local' => array(
 		'host'	=> 'gateway.sandbox.push.apple.com:2195',
-		'cert'	=> path('app').'certificates/dev.pem'
+		'cert'	=> path('app').'certificates/dev.pem',
+		'pass'	=> 'OPTIONAL PASSPHRASE', // Used when generating the *.p12 file
 	),
 	'prod'	=> array(
 		'host'	=> 'gateway.push.apple.com:2195',
-		'cert'	=> path('app').'certificates/prod.pem'	
+		'cert'	=> path('app').'certificates/prod.pem',
+		'pass'	=> 'OPTIONAL PASSPHRASE', // Used when generating the *.p12 file
 	)
 );
 ```
@@ -54,7 +56,8 @@ $apns = new SimpleApns;
 $apns = SimpleApns::make(
 	array(
 		'host' => 'gateway.sandbox.push.apple.com:2195',
-		'cert' => 'yourcertificate.pem'
+		'cert' => 'yourcertificate.pem',
+		'pass'	=> 'OPTIONAL PASSPHRASE', // Used when generating the *.p12 file
 	)
 );
 ```
