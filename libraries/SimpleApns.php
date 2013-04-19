@@ -43,6 +43,10 @@ class SimpleApns
 		$streamContext = stream_context_create();
 		stream_context_set_option($streamContext,'ssl','local_cert',static::$config['cert']);
 
+		if (isset(static::$config['pass']) && !empty(static::$config['pass'])) {
+			stream_context_set_option($streamContext, 'ssl', 'passphrase', static::$config['pass']);
+		}
+
 		$apns = stream_socket_client('ssl://'.static::$config['host'],$nError,$sError,2,STREAM_CLIENT_CONNECT,$streamContext);
 
 		if(!$apns)
